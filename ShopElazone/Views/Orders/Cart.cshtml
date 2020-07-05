@@ -1,0 +1,76 @@
+﻿@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<main class="container">
+    <div class="col-12">
+        <table class="mt-5 table">
+            <thead>
+                <tr class="text-center">
+                    <th scope="col">PRODUCT</th>
+                    <th scope="col">PRICE</th>
+                    <th scope="col">QUANTITY</th>
+                    <th scope="col">TOTAL</th>
+                    <th scope="col">CHECKOUT</th>
+
+                </tr>
+            </thead>
+            <tbody class="cart-body" id="tbod">
+                @foreach (var item in ViewBag.cart)
+                {
+                    <tr>
+                        <th scope="row">
+                            <div>
+                                <img src="@item.OrderImage" style="width: 10%;">
+                                <p>@item.ModelName</p>
+                            </div>
+                        </th>
+                        <td><span>$@item.Price</span></td>
+                        <td class="buttons-container-of-cart">
+                            <button class="btnDown">-</button><input class="price-container" type="text" value="1"><button class="btnUp">+</button>
+                        </td>
+                        <td id="totalVal"><span>@item.TotalOrderPrice</span></td>
+                        <td><a asp-controller="Orders" asp-action="Checkout" asp-route-id="@item.ID">Checkout</a></td> 
+                    </tr>
+                    
+                }
+
+                
+            </tbody>
+        </table>
+    </div>
+</main>
+
+
+<script>
+
+    $('.btnUp').click(function () {
+        let val = parseInt($(this).prev().val());
+
+        let price = $(this).parent().prev().children('span').text();
+        let convertedPrice = parseInt(price.replace(/\$/g, ''));
+
+        let total = $(this).parent().next().children('span').text("$" + convertedPrice * (val + 1));
+
+        val++
+        $(this).prev().val(val);
+    })
+
+    $('.btnDown').click(function () {
+        let val = parseInt($(this).next().val());
+
+        let price = $(this).parent().prev().children('span').text();
+        let convertedPrice = parseInt(price.replace(/\$/g, ''));
+
+        if (val > 1) {
+            let total = $(this).parent().next().children('span').text("$" + convertedPrice * (val - 1));
+        }
+
+        if (val > 1) {
+            val--
+        }
+
+        $(this).next().val(val);
+    })
+</script>

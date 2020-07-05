@@ -1,0 +1,17 @@
+﻿@model IEnumerable<Elazone.Models.Products>
+
+@{
+    foreach (var item in Model)
+    {
+    <div class="col-md-3 single-smartphone">
+        <a class="text-center" asp-action="TabletDetails" asp-controller="Tablets" asp-route-id="@item.ID">
+            <img src="~/images/products/@item.ImageUrl" />
+            <a class="text-center" asp-action="TabletDetails" asp-controller="Tablets" asp-route-id="@item.ID">@item.Brand&nbsp;@item.Model&nbsp;@item.MemoryInternal GB&nbsp;@item.Color</a>
+            <p class="text-center">@item.Price$</p>
+        </a>
+    </div>
+
+
+    }
+
+}

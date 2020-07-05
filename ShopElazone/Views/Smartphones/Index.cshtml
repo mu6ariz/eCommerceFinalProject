@@ -1,0 +1,967 @@
+﻿
+@model IEnumerable<Elazone.Models.Products>
+
+@{
+    ViewData["Title"] = "Smartphones";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #c-item {
+        display: none;
+    }
+</style>
+<div style="background-color: rgb(22, 55, 136);" id="mySideFilter" class="d-lg-none d-block sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeFilter()">&times;</a>
+    <div class="categories-filter mt-5">
+        <h4>Brands</h4>
+
+        <ul class="filter-container">s
+
+            <li>
+                <label>
+                    <input id="rb1" value="Apple" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                    Apple
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input id="rb2" value="Samsung" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                    Samsung
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+
+
+                    <input id="rb3" value="Lg" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                    Lg
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+
+                    <input id="rb4" value="Xiaomi" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                    Xiaomi
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+
+                    <input id="rb5" value="Nokia" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                    Nokia
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="categories-filter mt-5">
+        <h4>Color</h4>
+        <ul class="filter-container">
+
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input id="color1" value="Black" type="checkbox" name="Color" class="ColorOfProduct">
+                    Black
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input id="color2" value="White" type="checkbox" name="Color" class="ColorOfProduct">
+                    White
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input id="color3" value="Green" type="checkbox" name="Color" class="ColorOfProduct">
+                    Green
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input id="color4" value="Red" type="checkbox" name="Color" class="ColorOfProduct">
+                    Red
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span class=""></span>
+
+                    <input id="color5" value="Blue" type="checkbox" name="Color" class="ColorOfProduct">
+                    Blue
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span class=""></span>
+
+                    <input id="color6" value="Gold" type="checkbox" name="Color" class="ColorOfProduct">
+                    Gold
+                </label>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="filter-custom-price categories-filter mt-5">
+        <h4>Price</h4>
+        <ul class="filter-container">
+
+
+
+        </ul>
+        <form class="ml-3 filter-custom-price" method="get" asp-controller="Smartphones" asp-action="SingleFilter">
+            <input name="val1" id="customePriceMin" type="number" placeholder="Min $" />
+            <input name="val2" id="customePriceMax" type="number" placeholder="Max $" />
+            <input type="submit" name="Search" />
+        </form>
+    </div>
+
+    <div class="categories-filter mt-5">
+        <h4>Ram</h4>
+        <ul class="filter-container">
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input input id="ram1" value="512" type="checkbox" name="Ram" class="RamOfProduct">
+                    512Mb
+                    <span class="magnitude">(0)</span>
+
+                </label>
+            </li>
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input input id="ram2" value="1" type="checkbox" name="Ram" class="RamOfProduct">
+                    1GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input input id="color1" value="2" type="checkbox" name="Ram" class="RamOfProduct">
+                    2GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input input id="ram3" value="4" type="checkbox" name="Ram" class="RamOfProduct">
+                    4GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+                    <span>
+
+                        <span class="ps-shown-by-js"></span>
+                    </span>
+
+                    <input input id="ram4" value="6" type="checkbox" name="Ram" class="RamOfProduct">
+                    6GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+        </ul>
+    </div>
+
+    <div class="categories-filter mt-5">
+        <h4>Memory</h4>
+        <ul class="filter-container">
+            <li>
+                <label>
+
+
+                    <input id="memory1" value="16" type="checkbox" name="Memory" class="MemoryOfProduct">
+                    16GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+
+
+                    <input id="memory2" value="32" type="checkbox" name="Memory" class="MemoryOfProduct">
+                    32GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+
+
+                    <input id="memory3" value="64" type="checkbox" name="Memory" class="MemoryOfProduct">
+                    64GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+
+
+                    <input id="memory4" value="128" type="checkbox" name="Memory" class="MemoryOfProduct">
+                    128GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+            <li>
+                <label>
+
+
+                    <input id="memory5" value="256" type="checkbox" name="Memory" class="MemoryOfProduct">
+                    256GB
+                    <span class="magnitude">(3)</span>
+
+                </label>
+            </li>
+
+        </ul>
+    </div>
+</div>
+<span class="p-1 mobile-menu-filter d-lg-none d-block" style="background-color:transparent; font-size: 30px;
+    cursor: pointer;
+    position: absolute;
+    top: 5.7em;" onclick="openFilter()"><i class="mdi mdi-filter-menu-outline"></i></span>
+<div class="wrapper">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="d-none d-lg-block col-lg-3 col-md-3 col-sm-12 filters-side">
+                <div class="categories-filter mt-5">
+                    <h4>Brands</h4>
+
+                    <ul class="filter-container">
+
+                        <li>
+                            <label>
+                                <input id="rb1" value="Apple" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                                Apple
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input id="rb2" value="Samsung" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                                Samsung
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+
+
+                                <input id="rb3" value="Lg" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                                Lg
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+
+                                <input id="rb4" value="Xiaomi" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                                Xiaomi
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+
+                                <input id="rb5" value="Nokia" type="checkbox" name="brand" href="#" class="BrandOfProduct">
+                                Nokia
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="categories-filter mt-5">
+                    <h4>Color</h4>
+                    <ul class="filter-container">
+
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input id="color1" value="Black" type="checkbox" name="Color" class="ColorOfProduct">
+                                Black
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input id="color2" value="White" type="checkbox" name="Color" class="ColorOfProduct">
+                                White
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input id="color3" value="Green" type="checkbox" name="Color" class="ColorOfProduct">
+                                Green
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input id="color4" value="Red" type="checkbox" name="Color" class="ColorOfProduct">
+                                Red
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span class=""></span>
+
+                                <input id="color5" value="Blue" type="checkbox" name="Color" class="ColorOfProduct">
+                                Blue
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span class=""></span>
+
+                                <input id="color6" value="Gold" type="checkbox" name="Color" class="ColorOfProduct">
+                                Gold
+                            </label>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="filter-custom-price categories-filter mt-5">
+                    <h4>Price</h4>
+                    <ul class="filter-container">
+
+                    </ul>
+                    <form class="ml-3 filter-custom-price" method="get" asp-controller="Smartphones" asp-action="CustomPrice">
+                        <input name="customePriceMin" id="val1" type="number" placeholder="Min $" />
+                        <input name="customePriceMax" id="val2" type="number" placeholder="Max $" />
+                        <input type="submit" name="Search" />
+                    </form>
+                </div>
+
+                <div class="categories-filter mt-5">
+                    <h4>Ram</h4>
+                    <ul class="filter-container">
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input input id="ram1" value="512" type="checkbox" name="Ram" class="RamOfProduct">
+                                512Mb
+                                <span class="magnitude">(0)</span>
+
+                            </label>
+                        </li>
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input input id="ram2" value="1" type="checkbox" name="Ram" class="RamOfProduct">
+                                1GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input input id="color1" value="2" type="checkbox" name="Ram" class="RamOfProduct">
+                                2GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input input id="ram3" value="4" type="checkbox" name="Ram" class="RamOfProduct">
+                                4GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+                                <span>
+
+                                    <span class="ps-shown-by-js"></span>
+                                </span>
+
+                                <input input id="ram4" value="6" type="checkbox" name="Ram" class="RamOfProduct">
+                                6GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="categories-filter mt-5">
+                    <h4>Memory</h4>
+                    <ul class="filter-container">
+                        <li>
+                            <label>
+
+
+                                <input id="memory1" value="16" type="checkbox" name="Memory" class="MemoryOfProduct">
+                                16GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+
+
+                                <input id="memory2" value="32" type="checkbox" name="Memory" class="MemoryOfProduct">
+                                32GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+
+
+                                <input id="memory3" value="64" type="checkbox" name="Memory" class="MemoryOfProduct">
+                                64GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+
+
+                                <input id="memory4" value="128" type="checkbox" name="Memory" class="MemoryOfProduct">
+                                128GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                        <li>
+                            <label>
+
+
+                                <input id="memory5" value="256" type="checkbox" name="Memory" class="MemoryOfProduct">
+                                256GB
+                                <span class="magnitude">(3)</span>
+
+                            </label>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+                    <div class="banner-of-smartphones mt-5">
+                        <img src="/images/banner4.jpg" alt="">
+                    </div>
+
+
+
+            </div>
+
+            <div class="col-md-9 col-lg-9 col-sm-12 col-xs-12 mt-5">
+
+                <div class="row">
+                    <header class="d-none d-lg-block col-md-12 col-lg-12 col-xs-12 col-sm-12 header-of-smartphones">
+                        <h3>SMARTPHONES</h3>
+                        <img src="/images/smartphones/smartphones.jpg" alt="smartphone-banner">
+                    </header>
+                    <div class="d-none d-lg-flex mt-5  filter-header-of-smartphone-products col-md-12 col-lg-12 col-xs-12 col-sm-12">
+                        <div class="left-side-of-smartphone-products-header">
+
+                            <span>There are 20 products.</span>
+                        </div>
+                        <div class="right-side-of-smartphone-products-header">
+                            <span>Short by</span>
+                            <select class="filter-lowhigh" name="filter-smartphone" id="filter-smartphone">
+                                <option>Select Filter</option>
+                                <option value="1">Price,low to high</option>
+                                <option value="2">Price,high to low</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    <div id="smartphone-products" class="row smartphone-products">
+
+                    </div>
+
+                    <div class="pagination">
+                        <a class="pagNumber d-none" value=""></a>
+                        @{
+                            int counter = 0;
+
+                            for (int i = 1; i < Model.Count(); i++)
+                            {
+                                if (i % 10 == 0)
+                                {
+                                    counter++;
+
+                                    <a class="pag" value="@counter">@counter</a>
+                                }
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+ </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        let BrandMassiv = [];
+
+        let ColorMassiv = [];
+
+        let RamMassiv = [];
+
+        let MemoryMassiv = [];
+
+        let BrandCount = 0;
+
+        let ColorCount = 0;
+
+        let RamCount = 0;
+
+        let memoryCount = 0;
+
+        let countSum = BrandCount + ColorCount + RamCount;
+
+
+        $("input[name=brand]").change(function () {
+
+            let val1 = $(this).val().toString();
+
+            let index = BrandMassiv.indexOf(val1);
+
+
+            if (this.checked) {
+
+                BrandCount++;
+                countSum++;
+
+                BrandMassiv.push(val1);
+                console.log(BrandMassiv);
+
+            }
+            else {
+
+                if (index > -1) {
+                    BrandMassiv.splice(index, 1);
+
+                }
+                BrandCount--;
+                countSum--;
+                console.log(BrandMassiv);
+
+            }
+        });
+
+        $("input[name=Color]").change(function () {
+
+            let val1 = $(this).val().toString();
+
+            let index = ColorMassiv.indexOf(val1);
+
+
+            if (this.checked) {
+
+                ColorCount++;
+                countSum++;
+
+                ColorMassiv.push(val1);
+                console.log(ColorMassiv);
+
+            }
+            else {
+
+                if (index > -1) {
+                    ColorMassiv.splice(index, 1);
+                }
+                ColorCount--;
+                countSum--;
+                console.log(ColorMassiv);
+
+            }
+        });
+
+        $("input[name=Ram]").change(function () {
+
+            let val1 = $(this).val().toString();
+
+            let index = RamMassiv.indexOf(val1);
+
+
+            if (this.checked) {
+
+                RamCount++;
+                countSum++;
+
+                RamMassiv.push(val1);
+                console.log(RamMassiv);
+
+            }
+            else {
+
+                if (index > -1) {
+                    RamMassiv.splice(index, 1);
+                }
+                RamCount--;
+                countSum--;
+                console.log(RamMassiv);
+
+            }
+        });
+
+        $("input[name=Memory]").change(function () {
+
+            let val1 = $(this).val().toString();
+
+            let index = MemoryMassiv.indexOf(val1);
+
+
+            if (this.checked) {
+
+                memoryCount++;
+                countSum++;
+
+                MemoryMassiv.push(val1);
+                console.log(RamMassiv);
+
+            }
+            else {
+
+                if (index > -1) {
+                    MemoryMassiv.splice(index, 1);
+                }
+                memoryCount--;
+                countSum--;
+                console.log(MemoryMassiv);
+
+            }
+        });
+
+
+
+
+
+        $("input[type=checkbox]").change(function () {
+
+            ///////////////////////// BRAND SINGLE FILTER///////////////////////////////////
+
+            let pagNumber = $(".pagNumber").text();
+
+            if (BrandCount == 1 || BrandCount > 1) {
+                $.ajax({
+                    method: "GET",
+                    url: "/Smartphones/SingleFilter",
+                    data: { brand: BrandMassiv, id: pagNumber },
+                    traditional: true,
+                    success: function (result) {
+                        $(".smartphone-products").html(result);
+                    }
+                });
+            }
+
+
+            ////////////////////////// COLOR SINGLE FILTER//////////////////////////////////
+
+            if (ColorCount == 1 || ColorCount > 1) {
+                $.ajax({
+                    method: "GET",
+                    url: "/Smartphones/SingleFilter",
+                    data: { color: ColorMassiv, id: pagNumber },
+                    traditional: true,
+                    success: function (result) {
+                        $(".smartphone-products").html(result);
+                    }
+                });
+            }
+
+
+            ///////////////////////// RAM SINGLE FILTER///////////////////////////////////
+
+            if (RamCount == 1 || RamCount > 1) {
+                $.ajax({
+                    method: "GET",
+                    url: "/Smartphones/SingleFilter",
+                    data: { ram: RamMassiv, id: pagNumber },
+                    traditional: true,
+                    success: function (result) {
+                        $(".smartphone-products").html(result);
+                    }
+                });
+            }
+
+            ///////////////////////// MEMORY SINGLE FILTER///////////////////////////////////
+
+            if (memoryCount == 1 || memoryCount > 1) {
+                $.ajax({
+                    method: "GET",
+                    url: "/Smartphones/SingleFilter",
+                    data: { ram: memoryValue, id: pagNumber },
+                    traditional: true,
+                    success: function (result) {
+                        $(".smartphone-products").html(result);
+                    }
+                });
+            }
+
+
+            /////////////////////////////MULTI FILTER///////////////////////////////
+
+
+
+            if (BrandCount > 0 && ColorCount > 0 || RamCount > 0 || memoryCount > 0) {
+
+                $.ajax({
+                    method: "GET",
+                    url: "/Smartphones/MultipleFilter",
+                    data: { brand: BrandMassiv, color: ColorMassiv, ram: RamMassiv, id: pagNumber, memoryValue: MemoryMassiv },
+                    traditional: true,
+                    success: function (result) {
+                        $(".smartphone-products").html(result);
+                    }
+                });
+            }
+
+
+        });
+
+
+    </script>
+
+
+    <script>
+
+        $(".filter-lowhigh").change(function () {
+
+            let val = $(this).val();
+
+            $.ajax({
+                method: "GET",
+                url: "/Smartphones/FilterPrice",
+                data: { id: val },
+                traditional: true,
+                success: function (result) {
+                    $(".smartphone-products").html(result);
+                }
+            });
+
+        });
+
+
+        $(".pag").click(function () {
+
+            let val = $(this).attr("value");
+
+            let pagNumber = $(".pagNumber").text(val);
+
+            let pag = $(".pagNumber").text();
+
+            if (BrandCount == 0 && ColorCount == 0 && RamCount == 0 && memoryCount == 0) {
+
+                $.ajax({
+                    method: "GET",
+                    data: { id: val },
+                    url: "/Smartphones/Paged",
+                    traditional: true,
+                    success: function (result) {
+                        $(".smartphone-products").html(result);
+                    }
+                });
+            }
+
+            if (BrandCount == 1 || BrandCount > 1) {
+
+                $.ajax({
+                    method: "GET",
+                    url: "/Smartphones/SingleFilter",
+                    data: { brand: BrandMassiv, id: pag },
+                    traditional: true,
+                    success: function (result) {
+                        $(".smartphone-products").html(result);
+                    }
+                });
+
+            }
+
+
+
+        });
+
+
+
+        $.ajax({
+            method: "GET",
+            url: "/Smartphones/Paged",
+            traditional: true,
+            success: function (result) {
+                $(".smartphone-products").html(result);
+            }
+        });
+
+
+    </script>
+}
+

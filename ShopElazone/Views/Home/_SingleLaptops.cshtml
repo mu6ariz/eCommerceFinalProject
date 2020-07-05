@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Elazone.Models.Products>
+
+@{ foreach (var item in Model.Where(x => x.TypeOfInternalMemory != null).Skip(0).Take(3))
+    {
+        <div class="col-md-4 mt-5">
+            <img src="~/images/products/@item.ImageUrl" />
+            <a class="text-center" asp-action="PhoneDetails" asp-controller="Smartphones" asp-route-id="@item.ID">@item.Brand&nbsp;@item.Model&nbsp;@item.MemoryInternal GB&nbsp;@item.Color</a>
+            <p class="ml-2">@item.Price$</p>
+        </div>
+    }}

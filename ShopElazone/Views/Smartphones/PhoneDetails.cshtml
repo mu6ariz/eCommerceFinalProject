@@ -1,0 +1,290 @@
+﻿
+@model IEnumerable<Elazone.Models.Products>
+
+@{
+    ViewData["Title"] = "PhoneDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="d-none d-lg-flex col-md-3 row filters-side">
+
+                <div class="banner-of-smartphones mt-5">
+                    <img src="~/images/banner0.jpg" alt="">
+                </div>
+
+                <div class="special-products-s">
+                    <h4>Special products</h4>
+                    <div class="row content-of-special-products">
+                        <div class="col-md-3">
+                            <img src="/images/special-product-1.jpg" alt="">
+                        </div>
+                        <div class="col-md-9 about-of-special-products">
+                            <p>Shrinking from toil</p>
+                            <span>$135.01</span>
+                        </div>
+
+                        <div class="col-md-3 mt-3">
+                            <img src="/images/special-product-2.jpg" alt="">
+                        </div>
+                        <div class="col-md-9 about-of-special-products">
+                            <p>Shrinking from toil</p>
+                            <span>$135.01</span>
+                        </div>
+
+                        <div class="col-md-3 mt-3">
+                            <img src="/images/special-product-3.jpg" alt="">
+                        </div>
+                        <div class="col-md-9 about-of-special-products">
+                            <p>Shrinking from toil</p>
+                            <span>$135.01</span>
+                        </div>
+
+                        <div class="col-md-3 mt-3">
+                            <img src="/images/special-product-4.jpg" alt="">
+                        </div>
+                        <div class="col-md-9 about-of-special-products">
+                            <p>Shrinking from toil</p>
+                            <span>$135.01</span>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-md-9 mt-5">
+               
+                <div class="row">
+                    <header class="col-md-12 header-of-smartphones">
+                        <a href="#">Home</a> / @{ foreach (var item in Model)
+                            {
+                                <span>@item.Model</span>
+                            }}
+                        <hr />
+                    </header>
+
+                    <div id="smartphone-products" class="col-md-12 smartphone-products">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 images-details">
+                                <span>
+                                    @{ foreach (var item in Model)
+                                        {
+                                            <img class="default-img" src="~/images/products/@item.ImageUrl" />
+                                        }}
+
+                                </span>
+                                <div class="small-images mt-3">
+                                    @{ foreach (var item in Model)
+                                        {
+                                            <img class="ml-2 small-photo" src="~/images/products/details/@item.Photo1" />
+                                            <img class="ml-2 small-photo" src="~/images/products/details/@item.Photo2" />
+                                            <img class="ml-2 small-photo" src="~/images/products/details/@item.Photo3" />
+                                        }
+                                        
+                                   }
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12 descriptions">
+                                <div class="head-of-desc">
+                                    @{
+                                        foreach (var item in Model)
+                                        {
+                                            <h3 class="model-name">@item.Model</h3>
+                                            <a class="model-price"><h4>$@item.Price</h4></a>
+                                            <span>@item.Description</span>
+                                        }
+                                    }
+
+                                </div>
+
+
+                                <div class="color-of-item">
+                                    <p>Color</p>
+                                    <select>
+                                        <option>Black</option>
+                                        <option>Grey</option>
+                                        <option>White</option>
+                                        <option>Blue</option>
+                                    </select>
+                                </div>
+
+                                <div class="quantity mt-3">
+                                    <h3>Quantity</h3>
+                                    <form class="quantity-value-container mt-2">
+                                        <a class="mr-1" id="btnDown">-</a><input id="valueshower" type="text" value="1"><a class="ml-1" id="btnUp">+</a>
+                                        @foreach (var item in Model)
+                                        {
+                                            <a asp-controller="Cart" asp-action="Buy" asp-route-id="@item.ID" class="ml-2 add-to-cart">Add To Cart</a>
+                                        }
+
+
+                                    </form>
+                                    <div class="mt-4">
+                                        Returns: 30 days, buyer pays return shipping<br />
+                                        Payments:<img style="width:27%" src="~/images/payment/CC_icons.png" />
+                                    </div>
+                               
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-xs-12">
+                                @{
+                                    foreach (var item in Model)
+                                    {
+
+                                                                <p>@item.Description</p>
+                                                                <table class="table table-striped">
+
+                                                                    <tbody>
+
+                                                                        <tr>
+                                                                            <td>Brand:&nbsp;@item.Brand</td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>Model:&nbsp;@item.Brand&nbsp;@item.Model</td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>Ram:&nbsp;@item.Ram Gb</td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>Internal Memory:&nbsp;@item.MemoryInternal Gb</td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>Battery Mah:&nbsp;@item.BatteryMah Mah</td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>
+                                                                                Camera Resolution::&nbsp;@item.CameraMp Mp
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Operation System:&nbsp;@item.OperatingSystem
+                                                                            </td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>
+                                                                                Screen Size:&nbsp;@item.ScreenSize Inch
+                                                                            </td>
+                                                                        </tr>
+
+                                                                        <tr>
+                                                                            <td>
+                                                                                Network:&nbsp;Unlocked
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td>
+                                                                                Lock Status:&nbsp;Factory Unlocked
+                                                                            </td>
+                                                                        </tr>
+
+
+                                                                        <tr>
+                                                                            <td>
+                                                                                Connectivity:&nbsp;2G, 3G, 4G, Bluetooth, GPRS, GPS, NFC, Wi-Fi
+                                                                            </td>
+                                                                        </tr>
+
+
+                                                                    </tbody>
+                                                                </table>
+                                       
+
+
+                                    }
+                                }
+                            </div>
+
+                            <div class="col-md-12">
+                                <strong>12 Months Repair Warranty</strong>
+                                <p>
+                                    After 30 days of purchase, the item will be covered under our 12 months warranty. If the phone ‘develops’ a manufacturer fault, we are happy to have the device inspected,
+                                    fixed, re-tested and then sent back under our warranty.
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+
+        @section scripts{
+            <script>
+                $('#btnUp').click(function () {
+
+                    let val = parseInt($(this).prev().val());
+
+                    val++
+
+                    $("#valueshower").val(val);
+
+                });
+
+                $('#btnDown').click(function () {
+
+                    let val = parseInt($(this).next().val());
+
+                    if (val > 0) {
+                        val--
+                        $("#valueshower").val(val);
+                    }
+
+                });
+
+                $('.small-photo').click(function () {
+
+                  let source = $(this).attr('src');
+
+
+                  $('.default-img').attr("src", `${source}`);
+
+                })
+
+
+                $(".add-to-cart").click(function () {
+                    let source = $(".default-img").attr('src');
+
+                    let model = $(".model-name").text();
+
+                    let quantity = $("#valueshower").val();
+
+                    let modelPrice = $(".model-price").text();
+
+                    
+                
+                    let convertedPrice = parseInt(modelPrice.replace(/\$/g, ''));
+
+                    $.ajax({
+                        method: "POST",
+                        url: "/Orders/AddToCard",
+                        data: { Price: convertedPrice, OrderImage: source, ModelName: model,Quantity: quantity},
+                        traditional: true,
+                        success: function () {
+                            alert("done");
+                        }
+                    }); 
+                });
+             
+            </script>
+           
+
+
+
+        }
+
+
+
+

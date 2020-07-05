@@ -1,0 +1,46 @@
+﻿@model List<UserModel>
+<!-- Orders -->
+<div class="orders">
+    <div class="row">
+        <div class="col-xl-8">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="box-title">Users </h4>
+                </div>
+                <div class="card-body--">
+                    <div class="table-stats order-table ov-h">
+                        <table class="table ">
+                            <thead>
+                                <tr>
+                                    <th> @Html.DisplayNameFor(x => Model[0].UserName)</th>
+                                    <th> @Html.DisplayNameFor(x => Model[0].Email)</th>
+                                    <th>@Html.DisplayNameFor(x => Model[0].AccessDeniedCount)</th>
+                                    <th>@Html.DisplayNameFor(x => Model[0].IsLocked)</th>
+
+                                 </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var user in Model)
+                                {
+                                    string classname = user.IsLocked ? "badge-pending" : "badge-complete";
+                                    string status = user.IsLocked ? "Blocked" : "Active";
+                                <tr>
+                                    <td>@user.UserName</td>
+                                    <td>@user.Email</td>
+                                    <td>@user.AccessDeniedCount</td>
+                                    <td>
+                                        <span class="badge @classname">@status</span>
+                                    </td>
+                                </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div> <!-- /.table-stats -->
+                </div>
+            </div> <!-- /.card -->
+        </div>  <!-- /.col-lg-8 -->
+
+
+    </div>
+</div>
+
